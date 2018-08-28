@@ -20,8 +20,6 @@ document.onkeyup = function(event) {
     newGuess = event.key; 
     // add the new guess to the array
     guessesArr.push(newGuess);
-    console.log(guessesArr.length);
-    console.log(computerGuess);
 
     if (computerGuess !== newGuess){
         remaining--;
