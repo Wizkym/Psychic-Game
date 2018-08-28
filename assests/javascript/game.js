@@ -35,7 +35,7 @@ document.onkeyup = function(event) {
         document.querySelector('#wins').innerHTML = wins;
         guessesArr.length = 0;                              // clears the guesses array
         document.querySelector('#left').innerHTML = remaining;
-        document.querySelector('#guesses').innerHTML = guessesArr;``
+        document.querySelector('#guesses').innerHTML = guessesArr;
     }
 
     if ((remaining <= 0) || (guessesArr.length >= 9)) {
