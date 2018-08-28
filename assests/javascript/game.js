@@ -6,11 +6,6 @@ var loses = 0;
 var remaining = 9;
 var computerChoices = ['a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
-// Grab all references to the <span> areas in our html document.
-var userWins = document.getElementById("wins");
-var userLoss = document.getElementById("loses");
-var guessNum = document.getElementById("left");
-
 // Get a random computer guess
 var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
