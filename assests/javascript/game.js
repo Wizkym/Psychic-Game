@@ -1,5 +1,6 @@
 // Declare global variables
 var newGuess;
+var goodGuess = true;
 var guessesArr = [];
 var wins = 0;
 var loses = 0;
@@ -13,24 +14,48 @@ var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.l
 document.onkeyup = function(event) {
     // assign new guess a variable
     newGuess = event.key; 
-    // add the new guess to the array
-    guessesArr.push(newGuess);
+
+    // add the new guess to the array only if its not already a guess
+    function push(){
+        if (guessesArr.length > 0){
+            for (let x = 0; x < guessesArr.length; x++) {
+                if (newGuess === guessesArr[x]){    // iterates array to check for matches
+                    goodGuess = false;
+                    break;
+                }
+             }
+             if (goodGuess) {
+                guessesArr.push(newGuess);
+             } else {
+                 alert("You already guessed '" + newGuess + "'");
+            }
+        } else {
+            guessesArr.push(newGuess); 
+            goodGuess = true;
+        }
+    }
 
     if (computerGuess !== newGuess){
-        remaining--;
-        document.querySelector('#left').innerHTML = remaining;
-        document.getElementById("guesses").innerHTML = guessesArr;  // print out the whole array
+        push();
+        if (goodGuess){
+            remaining--;    // update remaining guesses
+            document.querySelector('#left').innerHTML = remaining;
+            document.getElementById("guesses").innerHTML = guessesArr;  // print out the whole array
+        }
     }
 
     if (computerGuess === newGuess) {
-        wins++;
-        remaining = 9;
-        computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)]; // generates new computer guess
-        // update the page content
-        document.querySelector('#wins').innerHTML = wins;
-        guessesArr.length = 0;                              // clears the guesses array
-        document.querySelector('#left').innerHTML = remaining;
-        document.querySelector('#guesses').innerHTML = guessesArr;
+        push();
+        if (goodGuess){
+            wins++;
+            remaining = 9;
+            computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)]; // generates new computer guess
+            // update the page content
+            document.querySelector('#wins').innerHTML = wins;
+            guessesArr.length = 0;                              // clears the guesses array
+            document.querySelector('#left').innerHTML = remaining;
+            document.querySelector('#guesses').innerHTML = guessesArr;
+        }
     }
 
     if ((remaining <= 0) || (guessesArr.length >= 9)) {
@@ -42,4 +67,6 @@ document.onkeyup = function(event) {
         document.querySelector('#left').innerHTML = remaining;
         document.querySelector('#guesses').innerHTML = guessesArr;
     }
+
+    goodGuess = true;
 }
