@@ -5,12 +5,12 @@ var guessesArr = [];
 var wins = 0;
 var loses = 0;
 var remaining = 9;
-var computerChoices = ['a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+var computerChoices = ['a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
 // Get a random computer guess
 var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-// Next, we give JavaScript a function to execute when onkeyup event fires.
+// Give JavaScript a function to execute when onkeyup event fires.
 document.onkeyup = function(event) {
     // assign new guess a variable
     newGuess = event.key; 
